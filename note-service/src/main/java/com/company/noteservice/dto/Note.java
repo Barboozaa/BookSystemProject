@@ -1,20 +1,19 @@
 package com.company.noteservice.Dto;
 
-note_id int not null auto_increment primary key,
-        book_id int not null,
-        note varchar(255)
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size
+    public class Note {
 
-    public class NoteDto {
-    @min(0)
+    @Min(0)
     private int note_id;
-    @min(0)
+    @Min(0)
     private int book_id;
     @Size(min=5, max=255)
     private String note;
 
-    public NoteDto(){};
+    public Note(){};
 
-        public NoteDto(int note_id, int book_id, String note) {
+        public Note(int note_id, int book_id, String note) {
             this.note_id = note_id;
             this.book_id = book_id;
             this.note = note;
