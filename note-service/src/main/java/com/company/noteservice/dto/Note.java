@@ -14,17 +14,23 @@ import java.util.Objects;
     public class Note implements Serializable {
 
     @Min(0)
+<<<<<<< HEAD
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "note_id")
     private int noteId;
     @Min(0)
     @Column(name = "book_id")
+=======
+    private int noteId;
+    @Min(0)
+>>>>>>> f59462a49e8b1240012be470215fbf08ef6b4f38
     private int bookId;
     @Size(min=5, max=255)
     @Column(name = "note")
     private String note;
 
+<<<<<<< HEAD
     public Note() {}
 
     public Note(@Min(0) int noteId, @Min(0) int bookId, @Size(min = 5, max = 255) String note) {
@@ -67,6 +73,28 @@ import java.util.Objects;
                     ", bookId=" + bookId +
                     ", note='" + note + '\'' +
                     '}';
+=======
+        public Note(@Min(0) int noteId, int bookId, String note) {
+            this.noteId = noteId;
+            this.bookId = bookId;
+            this.note =   note;
+        }
+
+        public int getNoteId() {
+            return noteId;
+        }
+
+        public void setNoteId(int noteId) {
+            this.noteId = noteId;
+        }
+
+        public int getBookId() {
+            return bookId;
+        }
+
+        public void setBookId(int bookId) {
+            this.bookId = bookId;
+>>>>>>> f59462a49e8b1240012be470215fbf08ef6b4f38
         }
 
         @Override
