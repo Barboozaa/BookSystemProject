@@ -1,24 +1,23 @@
 package com.company.bookservice.controller;
 
-import com.netflix.discovery.converters.Auto;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import com.company.bookservice.service.BookServiceLayer;
+import com.company.bookservice.viewModel.BookViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class BookController {
-    public static final String EXCHANGE =
-            "note-exchange";
-    public static final String ROUTING_KEY =
-            "note.controller";
 
-    private final RabbitTemplate rabbitTemplate;
+    private final BookServiceLayer serviceLayer;
 
     @Autowired
-    public BookController(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
+    public BookController(BookServiceLayer serviceLayer) {
+        this.serviceLayer = serviceLayer;
     }
 
-//    @PostMapping("/notes")
+    @PostMapping("/books")
+    public BookViewModel saveBook(BookViewModel bookViewModel) {
+        return null;
+    }
 }
