@@ -5,34 +5,32 @@ import javax.validation.constraints.Size
     public class Note {
 
     @Min(0)
-    private int note_id;
+    private int noteId;
     @Min(0)
-    private int book_id;
+    private int bookId;
     @Size(min=5, max=255)
     private String note;
 
-    public Note(){};
-
-        public Note(int note_id, int book_id, String note) {
-            this.note_id = note_id;
-            this.book_id = book_id;
-            this.note = note;
+        public Note(@Min(0) int noteId, int bookId, String note) {
+            this.noteId = noteId;
+            this.bookId = bookId;
+            this.note =   note;
         }
 
-        public int getNote_id() {
-            return note_id;
+        public int getNoteId() {
+            return noteId;
         }
 
-        public void setNote_id(int note_id) {
-            this.note_id = note_id;
+        public void setNoteId(int noteId) {
+            this.noteId = noteId;
         }
 
-        public int getBook_id() {
-            return book_id;
+        public int getBookId() {
+            return bookId;
         }
 
-        public void setBook_id(int book_id) {
-            this.book_id = book_id;
+        public void setBookId(int bookId) {
+            this.bookId = bookId;
         }
 
         public String getNote() {
