@@ -5,4 +5,4 @@
 * Patrick Hussey
 * Wyatt Simpson
 * Ahmed Kaahin
-* Jay Jernigen
+* Jay Jernigan
