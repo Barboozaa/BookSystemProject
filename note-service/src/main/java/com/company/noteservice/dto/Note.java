@@ -2,10 +2,7 @@ package com.company.noteservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -13,15 +10,19 @@ import java.util.Objects;
 
     @Entity
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @Table(name = "note")
     public class Note implements Serializable {
 
     @Min(0)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "note_id")
     private int noteId;
     @Min(0)
+    @Column(name = "book_id")
     private int bookId;
     @Size(min=5, max=255)
+    @Column(name = "note")
     private String note;
 
     public Note() {}
@@ -59,7 +60,16 @@ import java.util.Objects;
         return this;
     }
 
-    @Override
+        @Override
+        public String toString() {
+            return "Note{" +
+                    "noteId=" + noteId +
+                    ", bookId=" + bookId +
+                    ", note='" + note + '\'' +
+                    '}';
+        }
+
+        @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -67,10 +77,10 @@ import java.util.Objects;
         return noteId == note1.noteId &&
                 bookId == note1.bookId &&
                 Objects.equals(note, note1.note);
-    }
+        }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(noteId, bookId, note);
-    }
+        @Override
+        public int hashCode() {
+            return Objects.hash(noteId, bookId, note);
+        }
 }
