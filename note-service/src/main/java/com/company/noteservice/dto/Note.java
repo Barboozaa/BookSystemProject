@@ -1,45 +1,79 @@
-package com.company.noteservice.Dto;
+package com.company.noteservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Size
-    public class NoteDto {
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.Objects;
 
-    @Min(0)
-    private int note_id;
-    @Min(0)
-    private int book_id;
-    @Size(min=5, max=255)
-    private String note;
+    @Entity
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    public class Note implements Serializable {
 
-    public NoteDto(){};
+        @Min(0)
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        private int noteId;
+        @Min(0)
+        private int bookId;
+        @Size(min=5, max=255)
+        private String note;
 
-        public NoteDto(int note_id, int book_id, String note) {
-            this.note_id = note_id;
-            this.book_id = book_id;
+        public Note(){
+
+        }
+
+        public Note(@Min(0) int noteId, @Min(0) int bookId, @Size(min = 5, max = 255) String note) {
+            this.noteId = noteId;
+            this.bookId = bookId;
             this.note = note;
         }
 
-        public int getNote_id() {
-            return note_id;
+
+        public int getNoteId() {
+            return noteId;
         }
 
-        public void setNote_id(int note_id) {
-            this.note_id = note_id;
+        public Note setNoteId(int noteId) {
+            this.noteId = noteId;
+            return this;
         }
 
-        public int getBook_id() {
-            return book_id;
+        public int getBookId() {
+            return bookId;
         }
 
-        public void setBook_id(int book_id) {
-            this.book_id = book_id;
+        public Note setBookId(int bookId) {
+            this.bookId = bookId;
+            return this;
         }
 
         public String getNote() {
             return note;
         }
 
-        public void setNote(String note) {
+        public Note setNote(String note) {
             this.note = note;
+            return this;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Note note1 = (Note) o;
+            return noteId == note1.noteId &&
+                    bookId == note1.bookId &&
+                    Objects.equals(note, note1.note);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(noteId, bookId, note);
         }
     }
