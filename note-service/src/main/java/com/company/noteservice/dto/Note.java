@@ -2,7 +2,7 @@ package com.company.noteservice.Dto;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size
-    public class NoteDto {
+    public class Note {
 
     @Min(0)
     private int note_id;
@@ -11,9 +11,9 @@ import javax.validation.constraints.Size
     @Size(min=5, max=255)
     private String note;
 
-    public NoteDto(){};
+    public Note(){};
 
-        public NoteDto(int note_id, int book_id, String note) {
+        public Note(int note_id, int book_id, String note) {
             this.note_id = note_id;
             this.book_id = book_id;
             this.note = note;
