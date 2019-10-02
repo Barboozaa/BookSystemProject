@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
+<<<<<<< HEAD
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,6 +15,10 @@ import java.util.Objects;
     @Entity
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     public class Note implements Serializable {
+=======
+import javax.validation.constraints.Size
+    public class Note {
+>>>>>>> 4263a197eb10e87214e41f90f09101915dd8321f
 
         @Min(0)
         @Id
@@ -24,6 +29,7 @@ import java.util.Objects;
         @Size(min=5, max=255)
         private String note;
 
+<<<<<<< HEAD
         public Note(){
 
         }
@@ -31,6 +37,13 @@ import java.util.Objects;
         public Note(@Min(0) int noteId, @Min(0) int bookId, @Size(min = 5, max = 255) String note) {
             this.noteId = noteId;
             this.bookId = bookId;
+=======
+    public Note(){};
+
+        public Note(int note_id, int book_id, String note) {
+            this.note_id = note_id;
+            this.book_id = book_id;
+>>>>>>> 4263a197eb10e87214e41f90f09101915dd8321f
             this.note = note;
         }
 
