@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository("jpaDao")
 public interface NoteDaoJpaImpl extends JpaRepository<Note, Integer> {
-
 }

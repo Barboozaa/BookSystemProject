@@ -83,5 +83,4 @@ import java.util.Objects;
         public int hashCode() {
             return Objects.hash(noteId, bookId, note);
         }
-
 }
