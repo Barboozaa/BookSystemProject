@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
 /**
  * Created by ahmedkaahin on 10/2/19.
  */
@@ -42,7 +41,7 @@ public class NoteController {
         return service.findAllNotes();
     }
 
-    @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/note/book/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<Note> getAllNotesByBookId(@PathVariable int id) {
         return service.findNotesByBookId(id);

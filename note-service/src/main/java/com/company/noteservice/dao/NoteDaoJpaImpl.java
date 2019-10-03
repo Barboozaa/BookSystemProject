@@ -1,7 +1,6 @@
 package com.company.noteservice.dao;
 
 import com.company.noteservice.dto.Note;
-import org.apache.catalina.LifecycleState;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
