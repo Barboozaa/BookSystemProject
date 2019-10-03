@@ -42,6 +42,12 @@ public class NoteController {
         return service.findAllNotes();
     }
 
+    @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<Note> getAllNotesByBookId(@PathVariable int id) {
+        return service.findNotesByBookId(id);
+    }
+
     @RequestMapping(value = "/note", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     public void updateNote(@RequestBody Note note) {
