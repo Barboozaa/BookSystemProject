@@ -5,13 +5,14 @@ import com.company.noteservice.dto.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import java.util.List;
 import java.util.Optional;
 
 
 public class Service {
 
 
-    private final NoteDaoJpaImpl NoteDao;
+    private final NoteDaoJpaImpl noteDao;
 
     public static final String EXCHANGE =
             "note-exchange";
@@ -19,31 +20,33 @@ public class Service {
             "note.controller";
 
     @Autowired
-    public Service(NoteDaoJpaImpl NoteDao, RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
-        this.NoteDao = NoteDao;
+    public Service(NoteDaoJpaImpl noteDao) {
+
+        this.noteDao = noteDao;
     }
 
+    public Note addNote(Note note) {return noteDao.save(note);}
+
     public Note findById(Integer id) {
-        Optional<Note> book = NoteDao.findById(id);
+        Optional<Note> note = noteDao.findById(id);
         if (note.isPresent()) {
-            return book.get();
+            return note.get();
         } else {
             throw new EmptyResultDataAccessException("Nothing found for that id", 1);
         }
     }
 
 
-    public List<Book> findAllBooks() {
-        return bookDao.findAll();
+    public List<Note> findAllNotes() {
+        return noteDao.findAll();
     }
 
-    public void updateBook(Book book) {
-        bookDao.save(book);
+    public void updateNote(Note note) {
+        noteDao.save(note);
     }
 
-    public void deleteBook(Integer id) {
-        bookDao.deleteById(id);
+    public void deleteNote(Integer id) {
+        noteDao.deleteById(id);
     }
 
 }

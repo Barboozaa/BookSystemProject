@@ -70,7 +70,7 @@ import java.util.Objects;
         }
 
         @Override
-    public boolean equals(Object o) {
+        public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Note note1 = (Note) o;
@@ -83,4 +83,5 @@ import java.util.Objects;
         public int hashCode() {
             return Objects.hash(noteId, bookId, note);
         }
+
 }
