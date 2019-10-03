@@ -13,7 +13,6 @@ import java.util.List;
  * Created by ahmedkaahin on 10/2/19.
  */
 @RestController
-@RequestMapping(value="note")
 public class NoteController {
 
     @Autowired
@@ -21,12 +20,11 @@ public class NoteController {
 
     public NoteController(Service service){
       this.service = service;
-
     }
 
     @RequestMapping(value="/note", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Note createNote( Note note ){
+    public Note createNote(@RequestBody Note note){
         return service.addNote(note);
     }
 
