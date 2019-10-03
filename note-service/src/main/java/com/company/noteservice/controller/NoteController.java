@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -24,7 +25,8 @@ public class NoteController {
 
     @RequestMapping(value="/note", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Note createNote(@RequestBody Note note){
+    public Note createNote(@RequestBody @Valid Note note){
+
         return service.addNote(note);
     }
 
