@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
  * Created by ahmedkaahin on 10/2/19.
  */
 @RestController
-@RequestMapping(value="note")
 public class NoteController {
 
     @Autowired
@@ -21,12 +21,12 @@ public class NoteController {
 
     public NoteController(Service service){
       this.service = service;
-
     }
 
     @RequestMapping(value="/note", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Note createNote( Note note ){
+    public Note createNote(@RequestBody @Valid Note note){
+
         return service.addNote(note);
     }
 

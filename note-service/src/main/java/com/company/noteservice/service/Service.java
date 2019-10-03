@@ -4,14 +4,16 @@ import com.company.noteservice.dao.NoteDaoJpaImpl;
 import com.company.noteservice.dto.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
-
+@Component
 public class Service {
 
 
+    @Autowired
     private final NoteDaoJpaImpl noteDao;
 
     public static final String EXCHANGE =
@@ -19,7 +21,7 @@ public class Service {
     public static final String ROUTING_KEY =
             "note.controller";
 
-    @Autowired
+
     public Service(NoteDaoJpaImpl noteDao) {
 
         this.noteDao = noteDao;
