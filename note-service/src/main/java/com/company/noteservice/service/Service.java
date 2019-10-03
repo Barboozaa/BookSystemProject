@@ -43,6 +43,10 @@ public class Service {
         return noteDao.findAll();
     }
 
+    public List<Note> findNotesByBookId(int id) {
+        return noteDao.findNotesByBookId(id);
+    }
+
     public void updateNote(Note note) {
         noteDao.save(note);
     }
