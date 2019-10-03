@@ -7,45 +7,46 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootApplication
-@EnableDiscoveryClient
 @EnableFeignClients
 public class NoteQueueConsumerApplication {
 
-	public static final String TOPIC_EXCHANGE_NAME =
-			"note-exchange";
-	public static final String QUEUE_NAME =
-			"note-queue";
-	public static final String ROUTING_KEY =
-			"note.#";
+    public static final String TOPIC_EXCHANGE_NAME =
+            "note-exchange";
+    public static final String QUEUE_NAME =
+            "note-queue";
+    public static final String ROUTING_KEY =
+            "note.#";
 
-	@Bean
-	Queue queue() {
-		return new Queue(QUEUE_NAME, false);
-	}
+    @Bean
+    Queue queue() {
+        return new Queue(QUEUE_NAME, false);
+    }
 
-	@Bean
-	TopicExchange exchange() {
-		return new TopicExchange(TOPIC_EXCHANGE_NAME);
-	}
+    @Bean
+    TopicExchange exchange() {
+        return new TopicExchange(TOPIC_EXCHANGE_NAME);
+    }
 
-	@Bean
-	Binding binding(Queue queue, TopicExchange exchange) {
-		return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
-	}
+    @Bean
+    Binding binding(List<Queue> queue, TopicExchange exchange) {
+        return BindingBuilder.bind(queue()).to(exchange()).with(ROUTING_KEY);
+    }
 
-	@Bean
-	Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
-		return new Jackson2JsonMessageConverter();
-	}
+    @Bean
+    public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
 
-	public static void main(String[] args)
-	{
-		SpringApplication.run(NoteQueueConsumerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(NoteQueueConsumerApplication.class, args);
+    }
 
 }
+

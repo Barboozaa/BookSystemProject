@@ -1,32 +1,32 @@
-//package com.company.noteservice.controller;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.ResponseStatus;
-//import org.springframework.web.bind.annotation.RestController;
-//
-///**
-// * Created by ahmedkaahin on 10/2/19.
-// */
-//@RestController
-//@RequestMapping(value="note")
-//public class NoteController {
-//    @Autowired
-//    NoteDao dao
-//
-//    public NoteController(NoteDao dao){
-//      this.Dao = dao;
-//
-//    }
-//
-//    @RequestMapping(value="/note", method = RequestMethod.POST)
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public NoteDao createNote( Note  note{
-//        return dao.addNote(Note note);
-//    }
-//
+package com.company.noteservice.controller;
+
+import com.company.noteservice.Dto.Note;
+import com.company.noteservice.dao.NoteDaoJpaImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * Created by ahmedkaahin on 10/2/19.
+ */
+@RestController
+@RequestMapping(value="notes")
+public class NoteController {
+    @Autowired
+    NoteDaoJpaImpl dao;
+
+    public NoteController(NoteDaoJpaImpl dao){
+      this.dao = dao;
+
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createNote(@RequestBody Note note){
+        System.out.println("Note recieved");
+    }
+}
+
 //    @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
 //    @ResponseStatus(HttpStatus.OK)
 //    public Note getNote(@PathVariable int id) {
@@ -50,5 +50,5 @@
 //    public void deleteNote(@PathVariable int id) {
 //        dao.deleteNote(id);
 //    }
-//
+
 //}
