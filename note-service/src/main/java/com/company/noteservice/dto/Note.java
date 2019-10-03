@@ -1,4 +1,4 @@
-package com.company.noteservice.dto;
+package com.company.noteservice.Dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
