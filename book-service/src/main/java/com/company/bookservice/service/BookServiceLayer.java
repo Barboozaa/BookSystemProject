@@ -55,8 +55,13 @@ public class BookServiceLayer {
         book = bookDao.save(book);
         bookViewModel.setBook(book);
         if (bookViewModel.getNote() != null) {
-            bookViewModel.getNote().setBookId(book.getBookId());
             rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, bookViewModel.getNote());
+        }
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         bookViewModel.setNotes(client.getAllNotesByBook(bookViewModel.getBook().getBookId()));
@@ -70,7 +75,7 @@ public class BookServiceLayer {
         List<BookViewModel> models = new ArrayList<>();
         List<Book> books = bookDao.findAll();
 
-        books.forEach( book -> {
+        books.forEach(book -> {
 
             BookViewModel model = new BookViewModel();
             List<Note> notes = client.getAllNotesByBook(book.getBookId());
@@ -86,18 +91,17 @@ public class BookServiceLayer {
         Book book = bookViewModel.getBook();
         bookDao.save(book);
 
-        if (bookViewModel.getNote() != null) {
-            rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, bookViewModel.getNote());
-        }
-
+        rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, bookViewModel.getNote());
     }
 
+
     public void deleteBook(Integer id) {
+
         List<Note> notes = client.getAllNotesByBook(id);
 
-        notes.forEach( note -> {
+        notes.forEach(note -> {
             note.setBookId(0);
-            rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, note);
+            client.deleteAllNotesById(id);
         });
 
         bookDao.deleteById(id);

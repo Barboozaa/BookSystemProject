@@ -14,7 +14,6 @@ public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-//    @PositiveOrZero
     @Column(name = "book_id")
     private Integer bookId;
     @Size(min = 5, max = 50)

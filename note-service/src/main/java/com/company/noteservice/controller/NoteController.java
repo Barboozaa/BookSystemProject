@@ -23,9 +23,10 @@ public class NoteController {
 
     @RequestMapping(value="/notes", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Note createNote(@Valid @RequestBody Note note){
+    public Note createNote(@RequestBody @Valid Note note){
 
         return service.addNote(note);
+
     }
 
     @RequestMapping(value = "/notes/{id}", method = RequestMethod.GET)
@@ -50,6 +51,12 @@ public class NoteController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteNote(@PathVariable int id) {
         service.deleteNote(id);
+    }
+
+    @GetMapping("/notes/book/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Note> getAllNotesByBook(@PathVariable Integer id) {
+        return service.findNotesByBookId(id);
     }
 
 }

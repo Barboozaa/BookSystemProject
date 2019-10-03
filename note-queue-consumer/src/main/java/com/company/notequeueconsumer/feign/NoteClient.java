@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 public interface NoteClient {
     @PostMapping
     Note addNote(@RequestBody Note note);
-//    @PutMapping(value = "/notes/{id}")
-//    void updateNote(@RequestBody Note note, @PathVariable int id);
+    @PutMapping(value = "/notes/")
+    void updateNote(@RequestBody Note note);
 //    @DeleteMapping("/notes/{id}")
 //    void deleteNote(@PathVariable int id);
 }

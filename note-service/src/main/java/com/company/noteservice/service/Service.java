@@ -27,7 +27,9 @@ public class Service {
         this.noteDao = noteDao;
     }
 
-    public Note addNote(Note note) {return noteDao.save(note);}
+    public Note addNote(Note note) {
+        return noteDao.save(note);
+    }
 
     public Note findById(Integer id) {
         Optional<Note> note = noteDao.findById(id);
@@ -41,6 +43,10 @@ public class Service {
 
     public List<Note> findAllNotes() {
         return noteDao.findAll();
+    }
+
+    public List<Note> findNotesByBookId(int id) {
+        return noteDao.findNotesByBookId(id);
     }
 
     public void updateNote(Note note) {
