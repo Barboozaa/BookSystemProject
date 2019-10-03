@@ -1,7 +1,7 @@
 package com.company.noteservice.service;
 
 import com.company.noteservice.dao.NoteDaoJpaImpl;
-import com.company.noteservice.dto.Note;
+import com.company.noteservice.Dto.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,9 @@ public class Service {
         this.noteDao = noteDao;
     }
 
-    public Note addNote(Note note) {return noteDao.save(note);}
+    public Note addNote(Note note) {
+        return noteDao.save(note);
+    }
 
     public Note findById(Integer id) {
         Optional<Note> note = noteDao.findById(id);

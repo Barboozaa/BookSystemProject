@@ -21,11 +21,7 @@ public class MessageListener {
             client.addNote(note);
         } else {
             System.out.println("Id found, sending to update method");
-            if (note.getBookId() == 0) {
-//                client.deleteNote(note.getNoteId());
-            } else {
-//                client.updateNote(note, note.getNoteId());
-            }
+            client.updateNote(note);
         }
     }
 }

@@ -17,5 +17,5 @@ public interface NoteClient {
     @GetMapping("/notes/book/{id}")
     List<Note> getAllNotesByBook(@PathVariable Integer id);
     @DeleteMapping("/notes/{id}")
-    void deleteAllNotesByBook(@PathVariable Integer id);
+    void deleteAllNotesById(@PathVariable Integer id);
 }
