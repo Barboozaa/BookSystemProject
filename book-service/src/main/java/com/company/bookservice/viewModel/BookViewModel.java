@@ -48,6 +48,6 @@ public class BookViewModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(book, note);
+        return Objects.hash(book, note, notes);
     }
 }

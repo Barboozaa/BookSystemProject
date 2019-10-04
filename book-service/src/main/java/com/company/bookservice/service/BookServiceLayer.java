@@ -55,6 +55,7 @@ public class BookServiceLayer {
         book = bookDao.save(book);
         bookViewModel.setBook(book);
         if (bookViewModel.getNote() != null) {
+            bookViewModel.getNote().setBookId(book.getBookId());
             rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, bookViewModel.getNote());
         }
 
@@ -81,6 +82,7 @@ public class BookServiceLayer {
             List<Note> notes = client.getAllNotesByBook(book.getBookId());
             model.setBook(book);
             model.setNotes(notes);
+            models.add(model);
         });
 
         return models;
